@@ -8,8 +8,9 @@ require('dotenv').config();
 const PORT= process.env.PORT || 3030;
 app.use(cors({origin:true}))
 const dbUrl=process.env.DB_URL;
-
-mongoose.connect(dbUrl,{useNewUrlParser:true});
+const start=async()=>{
+try{
+ await mongoose.connect(dbUrl,{useNewUrlParser:true});
 
 const con=mongoose.connection;
 mongoose.set('bufferCommands', false);
@@ -22,15 +23,13 @@ app.get('/',(req,res)=>{
 
 app.listen(PORT,()=>{
     console.log('server is running at',PORT)
-})
-try{
-     con.on('open',()=>{
-        console.log('db connected')
-     })
-}
+})}
+
 catch(error){
      console.log("error"+error)
 }
+}
+start();
 const productRouter=require('./routes/product');
 const adminRouter=require('./routes/admin')
 const userRouter=require('./routes/users')
