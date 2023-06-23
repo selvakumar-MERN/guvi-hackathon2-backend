@@ -12,7 +12,7 @@ const dbUrl=process.env.DB_URL;
  mongoose.connect(dbUrl,{useNewUrlParser:true});
 
 const con=mongoose.connection;
-mongoose.set('bufferCommands', false);
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
