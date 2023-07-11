@@ -6,5 +6,8 @@ const orderData=require('../controller/payementcontrol');
 router.get('/products',productData.allProducts)
 router.post('/payment',orderData.orders)
 router.post('/verify',orderData.verify)
+router.get('/products/:id',productData.cartProducts)
+router.post('/calender/:id',productData.calender)
+
 
 module.exports=router;
