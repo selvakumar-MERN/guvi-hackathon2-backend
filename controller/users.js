@@ -1,23 +1,27 @@
 const users= require('../model/users')
 
 const createUsers = async (req, res) => {
+    const{userName,email,data}=req.body
+    for( const datas of data){
     const Users = new users({
-        name: req.body.name,
-        email: req.body.email,
-        rentedItem: req.body.rentedItem,
-        quantity:req.body.quantity,
-        fromDate:req.body.fromDate,
-        toDate:req.body.toDate,
-        fromTime:req.body.fromTime,
-        toTime:req.body.toTime
+        name: userName,
+        email: email,
+        rentedItem: datas[0].productName,
+        quantity:datas[0].quantity,
+        fromDate:datas[0].fromDate,
+        toDate:datas[0].toDate,
+        fromTime:datas[0].fromTime,
+        toTime:datas[0].toTime
     })
+      await Users.save();
+}
     try {
-        await Users.save();
-        res.status(200).send("sucessfully rented")
+          res.status(200).send("sucessfully rented")
     }
     catch (error) {
-        res.status(200).send("error")
+          res.status(200).send("error")
     }
+
 }
 
 const allUsers= async(req,res)=>{
