@@ -21,8 +21,42 @@ const productSchema= new mongoose.Schema({
     productImage:{
         type:String,
         required:true,
+    },
+    quantity:{
+        type:Number,
+        default:1,
+    },
+    fromDate:{
+        type:Date,
+        default:0
+    },
+    toDate:{
+        type:Date,
+        default:0
+    },
+    fromTime:{
+        type:String,
+        default:0
+    },
+    toTime:{
+        type:String,
+        default:0
+    
+    },
+    hours:{
+        type:Number,
+        default:1,
+    },
+    userName:{
+        type:String,
+
+    },
+    email:{
+        type:String,
     }
-   
+
+    
+
 })
 
 module.exports=mongoose.model('products',productSchema);
